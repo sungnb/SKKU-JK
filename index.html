@@ -1,229 +1,839 @@
+```html
 <!DOCTYPE html>
-
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SKKU 조경</title>
+<meta charset="UTF-8">
 
-  <style>
-    * {
-      box-sizing: border-box;
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no,
+               viewport-fit=cover">
+
+<meta name="theme-color" content="#f3f6fa">
+
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+<title>SKKU 조경</title>
+
+<style>
+
+/* ==================================================
+   기본
+================================================== */
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    background: #f3f6fa;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Noto Sans KR",
+        "Malgun Gothic",
+        sans-serif;
+
+    background: #f3f6fa;
+    color: #172033;
+
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+/* ==================================================
+   메인
+================================================== */
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    padding-top:
+        max(28px, env(safe-area-inset-top));
+
+    padding-right:
+        max(16px, env(safe-area-inset-right));
+
+    padding-bottom:
+        max(32px, env(safe-area-inset-bottom));
+
+    padding-left:
+        max(16px, env(safe-area-inset-left));
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+
+/* ==================================================
+   상단 제목
+================================================== */
+
+.header {
+    position: relative;
+
+    padding: 8px 4px 22px;
+}
+
+.title {
+    margin: 0;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: -1.3px;
+    line-height: 1.15;
+
+    color: #102a43;
+
+    transition: color 0.2s ease;
+}
+
+
+/* ==================================================
+   버튼 영역
+================================================== */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* ==================================================
+   Google Sheets 버튼
+================================================== */
+
+.button {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 108px;
+
+    padding: 20px;
+
+    text-decoration: none;
+
+    color: #172033;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e2ec;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 14px rgba(16, 42, 67, 0.07);
+
+    transition:
+        transform 0.12s ease,
+        box-shadow 0.12s ease,
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.button-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-width: 0;
+}
+
+.icon {
+    flex: 0 0 auto;
+
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e7f0ff;
+
+    font-size: 23px;
+
+    transition:
+        background-color 0.2s ease;
+}
+
+.button-text {
+    font-size: 19px;
+    font-weight: 750;
+
+    letter-spacing: -0.5px;
+
+    white-space: nowrap;
+}
+
+.button-arrow {
+    flex: 0 0 auto;
+
+    font-size: 25px;
+
+    color: #9db2c8;
+
+    margin-left: 5px;
+}
+
+
+/* ==================================================
+   터치 효과
+================================================== */
+
+.button:active {
+    transform: scale(0.97);
+}
+
+.button:hover {
+    box-shadow:
+        0 7px 19px rgba(16, 42, 67, 0.11);
+}
+
+
+/* ==================================================
+   화면 설정
+   - 평소에는 ⚙️만 표시
+   - 누르면 밝게/어둡게 표시
+================================================== */
+
+.settings-wrap {
+    position: fixed;
+
+    top:
+        max(12px, env(safe-area-inset-top));
+
+    right:
+        max(14px, env(safe-area-inset-right));
+
+    z-index: 9000;
+}
+
+.settings-button {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid rgba(157,178,200,.35);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.88);
+
+    color: #52657a;
+
+    font-size: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 14px rgba(16,42,67,.10);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.settings-button:active {
+    transform: scale(.94);
+}
+
+
+/* ==================================================
+   밝게 / 어둡게 메뉴
+================================================== */
+
+.settings-menu {
+    display: none;
+
+    position: absolute;
+
+    top: 45px;
+    right: 0;
+
+    width: 150px;
+
+    padding: 7px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e2ec;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 12px 30px rgba(16,42,67,.16);
+}
+
+.settings-menu.show {
+    display: block;
+}
+
+.theme-option {
+    width: 100%;
+
+    min-height: 40px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #172033;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-align: left;
+
+    padding: 0 11px;
+
+    cursor: pointer;
+}
+
+.theme-option:active {
+    background: #eef3f8;
+}
+
+
+/* ==================================================
+   어두운 화면
+================================================== */
+
+body.dark-theme,
+html.dark-theme {
+    background: #18212b;
+}
+
+body.dark-theme {
+    color: #e9eef3;
+}
+
+
+/* 제목 */
+
+body.dark-theme .title {
+    color: #ffffff;
+}
+
+
+/* Google Sheets 버튼 */
+
+body.dark-theme .button {
+    background: #26313d;
+
+    color: #f0f3f6;
+
+    border-color: #3b4856;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.18);
+}
+
+
+/* 아이콘 */
+
+body.dark-theme .icon {
+    background: #334150;
+}
+
+
+/* 화살표 */
+
+body.dark-theme .button-arrow {
+    color: #8fa3b8;
+}
+
+
+/* 설정 버튼 */
+
+body.dark-theme .settings-button {
+    background: rgba(38,49,61,.94);
+
+    color: #e9eef3;
+
+    border-color: rgba(255,255,255,.12);
+}
+
+
+/* 설정 메뉴 */
+
+body.dark-theme .settings-menu {
+    background: #26313d;
+
+    border-color: #3b4856;
+}
+
+body.dark-theme .theme-option {
+    color: #f0f3f6;
+}
+
+body.dark-theme .theme-option:active {
+    background: #334150;
+}
+
+
+/* ==================================================
+   휴대폰
+================================================== */
+
+@media (max-width: 430px) {
+
+    .page {
+        padding-top:
+            max(20px, env(safe-area-inset-top));
+
+        padding-left:
+            max(13px, env(safe-area-inset-left));
+
+        padding-right:
+            max(13px, env(safe-area-inset-right));
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   "Noto Sans KR", sans-serif;
-      background: #f4f7f5;
-      color: #333;
-      transition: background 0.25s, color 0.25s;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 22px 16px 40px;
-    }
-
-    /* 상단 제목 + 밝게/어둡게 */
     .header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin: 8px 0 30px;
+        padding-bottom: 17px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 29px;
-      font-weight: 700;
-      color: #3f7f4a;
+    .title {
+        font-size: 22px;
     }
 
-    .theme-buttons {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+    .settings-button {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 11px;
+
+        font-size: 17px;
     }
 
-    .theme-button {
-      border: none;
-      background: transparent;
-      padding: 2px 3px;
-      font-size: 12px;
-      color: #666;
-      cursor: pointer;
-      white-space: nowrap;
+    .settings-menu {
+        top: 43px;
     }
 
-    /* 메뉴 */
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .menu-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      width: 100%;
-      height: 68px;
-
-      border: none;
-      border-radius: 15px;
-
-      background: #fff;
-      color: #333;
-
-      font-size: 21px;
-      font-weight: 600;
-
-      text-decoration: none;
-
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.10);
-
-      transition: transform 0.15s,
-                  background 0.25s,
-                  color 0.25s;
-    }
-
-    .menu-button:active {
-      transform: scale(0.97);
-    }
-
-    /* 어두운 화면 */
-    body.dark {
-      background: #202522;
-      color: #eee;
-    }
-
-    body.dark h1 {
-      color: #8fca98;
-    }
-
-    body.dark .theme-button {
-      color: #ccc;
-    }
-
-    body.dark .menu-button {
-      background: #303632;
-      color: #eee;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.30);
-    }
-
-    /* 휴대폰 */
-    @media (max-width: 480px) {
-
-      .container {
-        padding: 20px 14px 30px;
-      }
-
-      .header {
+    .buttons {
         gap: 9px;
-        margin-bottom: 26px;
-      }
-
-      h1 {
-        font-size: 27px;
-      }
-
-      .theme-button {
-        font-size: 11px;
-        padding: 2px;
-      }
-
-      .menu-button {
-        height: 64px;
-        font-size: 20px;
-        border-radius: 14px;
-      }
     }
-  </style>
 
+    .button {
+        min-height: 94px;
+
+        padding: 14px 12px;
+
+        border-radius: 17px;
+    }
+
+    .button-left {
+        gap: 9px;
+    }
+
+    .icon {
+        width: 38px;
+        height: 38px;
+
+        border-radius: 11px;
+
+        font-size: 19px;
+    }
+
+    .button-text {
+        font-size: 17px;
+    }
+
+    .button-arrow {
+        font-size: 21px;
+    }
+}
+
+
+/* ==================================================
+   아주 작은 화면
+================================================== */
+
+@media (max-width: 360px) {
+
+    .title {
+        font-size: 20px;
+    }
+
+    .button {
+        min-height: 88px;
+    }
+
+    .button-text {
+        font-size: 15px;
+    }
+
+    .icon {
+        width: 34px;
+        height: 34px;
+
+        font-size: 17px;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="container">
 
-```
-<!-- 상단 -->
-<div class="header">
+<!-- ==================================================
+     화면 설정
+================================================== -->
 
-  <h1>SKKU 조경</h1>
-
-  <div class="theme-buttons">
+<div class="settings-wrap" id="settingsWrap">
 
     <button
-      class="theme-button"
-      onclick="setLight()">
-      ☀ 밝게
+        type="button"
+        class="settings-button"
+        id="settingsButton"
+        aria-label="화면 설정"
+        aria-expanded="false">
+
+        ⚙️
+
     </button>
 
-    <button
-      class="theme-button"
-      onclick="setDark()">
-      🌙 어둡게
-    </button>
 
-  </div>
+    <div
+        class="settings-menu"
+        id="settingsMenu">
+
+        <button
+            type="button"
+            class="theme-option"
+            id="lightThemeButton">
+
+            ☀️ 밝게
+
+        </button>
+
+
+        <button
+            type="button"
+            class="theme-option"
+            id="darkThemeButton">
+
+            🌙 어둡게
+
+        </button>
+
+    </div>
 
 </div>
 
 
-<!-- 메뉴 -->
-<div class="menu">
 
-  <!-- 작업 일지 -->
-  <a
-    class="menu-button"
+<!-- ==================================================
+     메인
+================================================== -->
+
+<main class="page">
+
+<div class="container">
+
+
+<header class="header">
+
+    <h1 class="title">
+        SKKU 조경
+    </h1>
+
+</header>
+
+
+
+<!-- ==================================================
+     두 개의 Google Sheets
+================================================== -->
+
+<section class="buttons">
+
+
+<!-- 작업 일지 -->
+
+<a
+    class="button"
     href="https://docs.google.com/spreadsheets/d/1QQc6U-C3LSp8iZTQ85Uzdh3i-Xvjrqgkn-tlllAQFdY/edit?gid=780802741#gid=780802741"
-    target="_blank"
-    rel="noopener noreferrer">
-    작업 일지
-  </a>
+    target="_top">
+
+    <div class="button-left">
+
+        <div class="icon">
+            📝
+        </div>
+
+        <span class="button-text">
+            작업 일지
+        </span>
+
+    </div>
+
+    <span class="button-arrow">
+        ›
+    </span>
+
+</a>
 
 
-  <!-- 물품 구매 -->
-  <a
-    class="menu-button"
+
+<!-- 물품 구매 -->
+
+<a
+    class="button"
     href="https://docs.google.com/spreadsheets/d/1RKlm49nXuZ3W2zG0VngRQjdMEtggl4tBuVjWSOC3rxI/edit?gid=224685163#gid=224685163"
-    target="_blank"
-    rel="noopener noreferrer">
-    물품 구매
-  </a>
+    target="_top">
+
+    <div class="button-left">
+
+        <div class="icon">
+            🛒
+        </div>
+
+        <span class="button-text">
+            물품 구매
+        </span>
+
+    </div>
+
+    <span class="button-arrow">
+        ›
+    </span>
+
+</a>
+
+
+</section>
 
 </div>
-```
 
-  </div>
+</main>
 
-  <script>
 
-    function setLight() {
-      document.body.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+
+<script>
+
+/* ==================================================
+   밝게 / 어둡게 설정
+================================================== */
+
+const THEME_KEY = "skku_jogyeong_theme";
+
+
+const settingsButton =
+    document.getElementById("settingsButton");
+
+const settingsMenu =
+    document.getElementById("settingsMenu");
+
+const settingsWrap =
+    document.getElementById("settingsWrap");
+
+const lightThemeButton =
+    document.getElementById("lightThemeButton");
+
+const darkThemeButton =
+    document.getElementById("darkThemeButton");
+
+
+/* ==================================================
+   테마 적용
+================================================== */
+
+function applyTheme(theme) {
+
+    const isDark = theme === "dark";
+
+    document.body.classList.toggle(
+        "dark-theme",
+        isDark
+    );
+
+    document.documentElement.classList.toggle(
+        "dark-theme",
+        isDark
+    );
+
+
+    try {
+
+        localStorage.setItem(
+            THEME_KEY,
+            isDark ? "dark" : "light"
+        );
+
+    } catch (error) {}
+
+
+    /* 선택 후 메뉴 닫기 */
+
+    settingsMenu.classList.remove("show");
+
+    settingsButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+}
+
+
+/* ==================================================
+   저장된 테마 불러오기
+================================================== */
+
+function loadTheme() {
+
+    let theme = "light";
+
+    try {
+
+        theme =
+            localStorage.getItem(THEME_KEY)
+            || "light";
+
+    } catch (error) {}
+
+
+    applyTheme(theme);
+}
+
+
+/* ==================================================
+   ⚙️ 설정 버튼
+================================================== */
+
+settingsButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        const open =
+            settingsMenu.classList.toggle("show");
+
+        settingsButton.setAttribute(
+            "aria-expanded",
+            open ? "true" : "false"
+        );
+
     }
+);
 
-    function setDark() {
-      document.body.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+
+/* ==================================================
+   ☀️ 밝게
+================================================== */
+
+lightThemeButton.addEventListener(
+    "click",
+    function() {
+
+        applyTheme("light");
+
     }
+);
 
-    // 마지막으로 선택한 화면 기억
-    const savedTheme = localStorage.getItem("theme");
 
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark");
+/* ==================================================
+   🌙 어둡게
+================================================== */
+
+darkThemeButton.addEventListener(
+    "click",
+    function() {
+
+        applyTheme("dark");
+
     }
+);
 
-  </script>
+
+/* ==================================================
+   화면 다른 곳을 누르면 설정 메뉴 닫기
+================================================== */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if (
+            !settingsWrap.contains(event.target)
+        ) {
+
+            settingsMenu.classList.remove("show");
+
+            settingsButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   처음 실행
+================================================== */
+
+loadTheme();
+
+</script>
 
 </body>
 </html>
+```
