@@ -120,13 +120,13 @@ body {
 
 /* ==================================================
    버튼 영역
+   ★ 작업 일지 / 물품 구매 세로 배치
 ================================================== */
 
 .buttons {
     display: grid;
 
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
 
     gap: 12px;
 }
@@ -141,6 +141,8 @@ body {
 
     align-items: center;
     justify-content: space-between;
+
+    width: 100%;
 
     min-height: 108px;
 
@@ -598,7 +600,9 @@ body.dark-theme .theme-option:active {
 
 
 <!-- ==================================================
-     두 개의 Google Sheets
+     Google Sheets 메뉴
+     ★ 작업 일지 위
+     ★ 물품 구매 아래
 ================================================== -->
 
 <section class="buttons">
