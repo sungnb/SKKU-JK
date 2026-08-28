@@ -106,7 +106,7 @@ body {
 .title {
     margin: 0;
 
-    font-size: 25px;
+    font-size: calc(25px * var(--font-scale, 1));
     font-weight: 800;
 
     letter-spacing: -1.3px;
@@ -114,13 +114,14 @@ body {
 
     color: #102a43;
 
-    transition: color 0.2s ease;
+    transition:
+        color 0.2s ease,
+        font-size 0.15s ease;
 }
 
 
 /* ==================================================
    버튼 영역
-   ★ 작업 일지 / 물품 구매 세로 배치
 ================================================== */
 
 .buttons {
@@ -204,12 +205,15 @@ body {
 }
 
 .button-text {
-    font-size: 19px;
+    font-size: calc(19px * var(--font-scale, 1));
     font-weight: 750;
 
     letter-spacing: -0.5px;
 
     white-space: nowrap;
+
+    transition:
+        font-size 0.15s ease;
 }
 
 .button-arrow {
@@ -239,8 +243,6 @@ body {
 
 /* ==================================================
    화면 설정
-   - 평소에는 ⚙️만 표시
-   - 누르면 밝게/어둡게 표시
 ================================================== */
 
 .settings-wrap {
@@ -293,7 +295,7 @@ body {
 
 
 /* ==================================================
-   밝게 / 어둡게 메뉴
+   설정 메뉴
 ================================================== */
 
 .settings-menu {
@@ -304,7 +306,7 @@ body {
     top: 45px;
     right: 0;
 
-    width: 150px;
+    width: 190px;
 
     padding: 7px;
 
@@ -322,7 +324,8 @@ body {
     display: block;
 }
 
-.theme-option {
+.theme-option,
+.font-size-option {
     width: 100%;
 
     min-height: 40px;
@@ -345,8 +348,53 @@ body {
     cursor: pointer;
 }
 
-.theme-option:active {
+.theme-option:active,
+.font-size-option:active {
     background: #eef3f8;
+}
+
+
+/* ==================================================
+   글자 크기 슬라이더
+================================================== */
+
+.font-size-panel {
+    display: none;
+
+    padding:
+        5px 11px 10px;
+}
+
+.font-size-panel.show {
+    display: block;
+}
+
+.font-size-labels {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 3px;
+
+    color: #6b7c8f;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.font-size-range {
+    display: block;
+
+    width: 100%;
+    height: 24px;
+
+    margin: 0;
+    padding: 0;
+
+    cursor: pointer;
+
+    accent-color: #52657a;
 }
 
 
@@ -363,15 +411,9 @@ body.dark-theme {
     color: #e9eef3;
 }
 
-
-/* 제목 */
-
 body.dark-theme .title {
     color: #ffffff;
 }
-
-
-/* Google Sheets 버튼 */
 
 body.dark-theme .button {
     background: #26313d;
@@ -384,22 +426,13 @@ body.dark-theme .button {
         0 4px 14px rgba(0,0,0,.18);
 }
 
-
-/* 아이콘 */
-
 body.dark-theme .icon {
     background: #334150;
 }
 
-
-/* 화살표 */
-
 body.dark-theme .button-arrow {
     color: #8fa3b8;
 }
-
-
-/* 설정 버튼 */
 
 body.dark-theme .settings-button {
     background: rgba(38,49,61,.94);
@@ -409,21 +442,28 @@ body.dark-theme .settings-button {
     border-color: rgba(255,255,255,.12);
 }
 
-
-/* 설정 메뉴 */
-
 body.dark-theme .settings-menu {
     background: #26313d;
 
     border-color: #3b4856;
 }
 
-body.dark-theme .theme-option {
+body.dark-theme .theme-option,
+body.dark-theme .font-size-option {
     color: #f0f3f6;
 }
 
-body.dark-theme .theme-option:active {
+body.dark-theme .theme-option:active,
+body.dark-theme .font-size-option:active {
     background: #334150;
+}
+
+body.dark-theme .font-size-labels {
+    color: #aebdcc;
+}
+
+body.dark-theme .font-size-range {
+    accent-color: #d7e1eb;
 }
 
 
@@ -449,7 +489,8 @@ body.dark-theme .theme-option:active {
     }
 
     .title {
-        font-size: 22px;
+        font-size:
+            calc(22px * var(--font-scale, 1));
     }
 
     .settings-button {
@@ -491,7 +532,8 @@ body.dark-theme .theme-option:active {
     }
 
     .button-text {
-        font-size: 17px;
+        font-size:
+            calc(17px * var(--font-scale, 1));
     }
 
     .button-arrow {
@@ -507,7 +549,8 @@ body.dark-theme .theme-option:active {
 @media (max-width: 360px) {
 
     .title {
-        font-size: 20px;
+        font-size:
+            calc(20px * var(--font-scale, 1));
     }
 
     .button {
@@ -515,7 +558,8 @@ body.dark-theme .theme-option:active {
     }
 
     .button-text {
-        font-size: 15px;
+        font-size:
+            calc(15px * var(--font-scale, 1));
     }
 
     .icon {
@@ -555,6 +599,9 @@ body.dark-theme .theme-option:active {
         class="settings-menu"
         id="settingsMenu">
 
+
+        <!-- 밝게 -->
+
         <button
             type="button"
             class="theme-option"
@@ -565,6 +612,8 @@ body.dark-theme .theme-option:active {
         </button>
 
 
+        <!-- 어둡게 -->
+
         <button
             type="button"
             class="theme-option"
@@ -573,6 +622,52 @@ body.dark-theme .theme-option:active {
             🌙 어둡게
 
         </button>
+
+
+        <!-- 글자 크기 -->
+
+        <button
+            type="button"
+            class="font-size-option"
+            id="fontSizeButton"
+            aria-expanded="false">
+
+            🔠 글자 크기
+
+        </button>
+
+
+        <!-- 글자 크기 슬라이더 -->
+
+        <div
+            class="font-size-panel"
+            id="fontSizePanel">
+
+            <div class="font-size-labels">
+
+                <span>작게</span>
+
+                <span id="fontSizeValue">
+                    100%
+                </span>
+
+                <span>크게</span>
+
+            </div>
+
+
+            <input
+                type="range"
+                class="font-size-range"
+                id="fontSizeRange"
+                min="0.85"
+                max="1.35"
+                step="0.05"
+                value="1"
+                aria-label="글자 크기 조절">
+
+        </div>
+
 
     </div>
 
@@ -601,8 +696,6 @@ body.dark-theme .theme-option:active {
 
 <!-- ==================================================
      Google Sheets 메뉴
-     ★ 작업 일지 위
-     ★ 물품 구매 아래
 ================================================== -->
 
 <section class="buttons">
@@ -672,26 +765,60 @@ body.dark-theme .theme-option:active {
 <script>
 
 /* ==================================================
-   밝게 / 어둡게 설정
+   설정
 ================================================== */
 
-const THEME_KEY = "skku_jogyeong_theme";
+const THEME_KEY =
+    "skku_jogyeong_theme";
+
+const FONT_SIZE_KEY =
+    "skku_jogyeong_font_size";
 
 
 const settingsButton =
-    document.getElementById("settingsButton");
+    document.getElementById(
+        "settingsButton"
+    );
 
 const settingsMenu =
-    document.getElementById("settingsMenu");
+    document.getElementById(
+        "settingsMenu"
+    );
 
 const settingsWrap =
-    document.getElementById("settingsWrap");
+    document.getElementById(
+        "settingsWrap"
+    );
 
 const lightThemeButton =
-    document.getElementById("lightThemeButton");
+    document.getElementById(
+        "lightThemeButton"
+    );
 
 const darkThemeButton =
-    document.getElementById("darkThemeButton");
+    document.getElementById(
+        "darkThemeButton"
+    );
+
+const fontSizeButton =
+    document.getElementById(
+        "fontSizeButton"
+    );
+
+const fontSizePanel =
+    document.getElementById(
+        "fontSizePanel"
+    );
+
+const fontSizeRange =
+    document.getElementById(
+        "fontSizeRange"
+    );
+
+const fontSizeValue =
+    document.getElementById(
+        "fontSizeValue"
+    );
 
 
 /* ==================================================
@@ -700,7 +827,9 @@ const darkThemeButton =
 
 function applyTheme(theme) {
 
-    const isDark = theme === "dark";
+    const isDark =
+        theme === "dark";
+
 
     document.body.classList.toggle(
         "dark-theme",
@@ -717,15 +846,26 @@ function applyTheme(theme) {
 
         localStorage.setItem(
             THEME_KEY,
-            isDark ? "dark" : "light"
+            isDark
+                ? "dark"
+                : "light"
         );
 
     } catch (error) {}
 
 
-    /* 선택 후 메뉴 닫기 */
+    settingsMenu.classList.remove(
+        "show"
+    );
 
-    settingsMenu.classList.remove("show");
+    fontSizePanel.classList.remove(
+        "show"
+    );
+
+    fontSizeButton.setAttribute(
+        "aria-expanded",
+        "false"
+    );
 
     settingsButton.setAttribute(
         "aria-expanded",
@@ -735,23 +875,117 @@ function applyTheme(theme) {
 
 
 /* ==================================================
-   저장된 테마 불러오기
+   글자 크기 적용
 ================================================== */
 
-function loadTheme() {
+function applyFontSize(
+    value,
+    save = true
+) {
 
-    let theme = "light";
+    let size =
+        Number(value);
+
+    if (!Number.isFinite(size)) {
+        size = 1;
+    }
+
+    size =
+        Math.min(
+            1.35,
+            Math.max(
+                0.85,
+                size
+            )
+        );
+
+
+    document.documentElement.style.setProperty(
+        "--font-scale",
+        size
+    );
+
+
+    fontSizeRange.value =
+        String(size);
+
+
+    fontSizeValue.textContent =
+        Math.round(size * 100)
+        + "%";
+
+
+    if (save) {
+
+        try {
+
+            localStorage.setItem(
+                FONT_SIZE_KEY,
+                String(size)
+            );
+
+        } catch (error) {}
+
+    }
+}
+
+
+/* ==================================================
+   저장된 설정 불러오기
+================================================== */
+
+function loadSettings() {
+
+    let theme =
+        "light";
+
+    let fontSize =
+        1;
+
 
     try {
 
         theme =
-            localStorage.getItem(THEME_KEY)
-            || "light";
+            localStorage.getItem(
+                THEME_KEY
+            ) || "light";
+
+
+        const savedSize =
+            localStorage.getItem(
+                FONT_SIZE_KEY
+            );
+
+        if (savedSize !== null) {
+
+            fontSize =
+                Number(savedSize);
+
+        }
 
     } catch (error) {}
 
 
-    applyTheme(theme);
+    if (theme !== "dark") {
+        theme = "light";
+    }
+
+
+    document.body.classList.toggle(
+        "dark-theme",
+        theme === "dark"
+    );
+
+    document.documentElement.classList.toggle(
+        "dark-theme",
+        theme === "dark"
+    );
+
+
+    applyFontSize(
+        fontSize,
+        false
+    );
 }
 
 
@@ -765,12 +999,18 @@ settingsButton.addEventListener(
 
         event.stopPropagation();
 
+
         const open =
-            settingsMenu.classList.toggle("show");
+            settingsMenu.classList.toggle(
+                "show"
+            );
+
 
         settingsButton.setAttribute(
             "aria-expanded",
-            open ? "true" : "false"
+            open
+                ? "true"
+                : "false"
         );
 
     }
@@ -785,7 +1025,9 @@ lightThemeButton.addEventListener(
     "click",
     function() {
 
-        applyTheme("light");
+        applyTheme(
+            "light"
+        );
 
     }
 );
@@ -799,14 +1041,60 @@ darkThemeButton.addEventListener(
     "click",
     function() {
 
-        applyTheme("dark");
+        applyTheme(
+            "dark"
+        );
 
     }
 );
 
 
 /* ==================================================
-   화면 다른 곳을 누르면 설정 메뉴 닫기
+   🔠 글자 크기
+================================================== */
+
+fontSizeButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+
+        const open =
+            fontSizePanel.classList.toggle(
+                "show"
+            );
+
+
+        fontSizeButton.setAttribute(
+            "aria-expanded",
+            open
+                ? "true"
+                : "false"
+        );
+
+    }
+);
+
+
+/* ==================================================
+   글자 크기 슬라이더
+================================================== */
+
+fontSizeRange.addEventListener(
+    "input",
+    function() {
+
+        applyFontSize(
+            this.value
+        );
+
+    }
+);
+
+
+/* ==================================================
+   화면 다른 곳을 누르면 닫기
 ================================================== */
 
 document.addEventListener(
@@ -814,12 +1102,25 @@ document.addEventListener(
     function(event) {
 
         if (
-            !settingsWrap.contains(event.target)
+            !settingsWrap.contains(
+                event.target
+            )
         ) {
 
-            settingsMenu.classList.remove("show");
+            settingsMenu.classList.remove(
+                "show"
+            );
+
+            fontSizePanel.classList.remove(
+                "show"
+            );
 
             settingsButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            fontSizeButton.setAttribute(
                 "aria-expanded",
                 "false"
             );
@@ -834,7 +1135,7 @@ document.addEventListener(
    처음 실행
 ================================================== */
 
-loadTheme();
+loadSettings();
 
 </script>
 
