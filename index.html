@@ -1,16 +1,16 @@
-```html
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no,
-               viewport-fit=cover">
+   content="width=device-width,
+            initial-scale=1.0,
+            maximum-scale=1.0,
+            user-scalable=no,
+            viewport-fit=cover">
 
 <meta name="theme-color" content="#f3f6fa">
 
@@ -21,10 +21,6 @@
 <title>SKKU 조경</title>
 
 <style>
-
-/* ==================================================
-   기본
-================================================== */
 
 * {
     box-sizing: border-box;
@@ -63,11 +59,6 @@ body {
         color 0.2s ease;
 }
 
-
-/* ==================================================
-   메인
-================================================== */
-
 .page {
     width: 100%;
     min-height: 100vh;
@@ -92,14 +83,8 @@ body {
     margin: 0 auto;
 }
 
-
-/* ==================================================
-   상단 제목
-================================================== */
-
 .header {
     position: relative;
-
     padding: 8px 4px 22px;
 }
 
@@ -119,23 +104,11 @@ body {
         font-size 0.15s ease;
 }
 
-
-/* ==================================================
-   버튼 영역
-================================================== */
-
 .buttons {
     display: grid;
-
     grid-template-columns: 1fr;
-
     gap: 12px;
 }
-
-
-/* ==================================================
-   Google Sheets 버튼
-================================================== */
 
 .button {
     display: flex;
@@ -144,7 +117,6 @@ body {
     justify-content: space-between;
 
     width: 100%;
-
     min-height: 108px;
 
     padding: 20px;
@@ -152,11 +124,9 @@ body {
     text-decoration: none;
 
     color: #172033;
-
     background: #ffffff;
 
     border: 1px solid #d9e2ec;
-
     border-radius: 20px;
 
     box-shadow:
@@ -175,11 +145,8 @@ body {
 
 .button-left {
     display: flex;
-
     align-items: center;
-
     gap: 12px;
-
     min-width: 0;
 }
 
@@ -190,12 +157,10 @@ body {
     height: 46px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     border-radius: 14px;
-
     background: #e7f0ff;
 
     font-size: 23px;
@@ -209,7 +174,6 @@ body {
     font-weight: 750;
 
     letter-spacing: -0.5px;
-
     white-space: nowrap;
 
     transition:
@@ -220,16 +184,10 @@ body {
     flex: 0 0 auto;
 
     font-size: 25px;
-
     color: #9db2c8;
 
     margin-left: 5px;
 }
-
-
-/* ==================================================
-   터치 효과
-================================================== */
 
 .button:active {
     transform: scale(0.97);
@@ -241,9 +199,7 @@ body {
 }
 
 
-/* ==================================================
-   화면 설정
-================================================== */
+/* 설정 */
 
 .settings-wrap {
     position: fixed;
@@ -262,17 +218,14 @@ body {
     height: 38px;
 
     border: 1px solid rgba(157,178,200,.35);
-
     border-radius: 12px;
 
     background: rgba(255,255,255,.88);
-
     color: #52657a;
 
     font-size: 18px;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
@@ -294,9 +247,7 @@ body {
 }
 
 
-/* ==================================================
-   설정 메뉴
-================================================== */
+/* 설정 메뉴 */
 
 .settings-menu {
     display: none;
@@ -313,7 +264,6 @@ body {
     background: #ffffff;
 
     border: 1px solid #d9e2ec;
-
     border-radius: 15px;
 
     box-shadow:
@@ -331,11 +281,9 @@ body {
     min-height: 40px;
 
     border: 0;
-
     border-radius: 10px;
 
     background: transparent;
-
     color: #172033;
 
     font-size: 14px;
@@ -354,15 +302,12 @@ body {
 }
 
 
-/* ==================================================
-   글자 크기 슬라이더
-================================================== */
+/* 글자 크기 */
 
 .font-size-panel {
     display: none;
 
-    padding:
-        5px 11px 10px;
+    padding: 5px 11px 10px;
 }
 
 .font-size-panel.show {
@@ -398,9 +343,7 @@ body {
 }
 
 
-/* ==================================================
-   어두운 화면
-================================================== */
+/* 어두운 화면 */
 
 body.dark-theme,
 html.dark-theme {
@@ -417,7 +360,6 @@ body.dark-theme .title {
 
 body.dark-theme .button {
     background: #26313d;
-
     color: #f0f3f6;
 
     border-color: #3b4856;
@@ -436,7 +378,6 @@ body.dark-theme .button-arrow {
 
 body.dark-theme .settings-button {
     background: rgba(38,49,61,.94);
-
     color: #e9eef3;
 
     border-color: rgba(255,255,255,.12);
@@ -444,7 +385,6 @@ body.dark-theme .settings-button {
 
 body.dark-theme .settings-menu {
     background: #26313d;
-
     border-color: #3b4856;
 }
 
@@ -467,9 +407,7 @@ body.dark-theme .font-size-range {
 }
 
 
-/* ==================================================
-   휴대폰
-================================================== */
+/* 휴대폰 */
 
 @media (max-width: 430px) {
 
@@ -498,7 +436,6 @@ body.dark-theme .font-size-range {
         height: 36px;
 
         border-radius: 11px;
-
         font-size: 17px;
     }
 
@@ -514,7 +451,6 @@ body.dark-theme .font-size-range {
         min-height: 94px;
 
         padding: 14px 12px;
-
         border-radius: 17px;
     }
 
@@ -542,9 +478,7 @@ body.dark-theme .font-size-range {
 }
 
 
-/* ==================================================
-   아주 작은 화면
-================================================== */
+/* 아주 작은 화면 */
 
 @media (max-width: 360px) {
 
@@ -571,188 +505,170 @@ body.dark-theme .font-size-range {
 }
 
 </style>
-</head>
 
+</head>
 
 <body>
 
-
-<!-- ==================================================
-     화면 설정
-================================================== -->
+<!-- 화면 설정 -->
 
 <div class="settings-wrap" id="settingsWrap">
 
+```
+<button
+    type="button"
+    class="settings-button"
+    id="settingsButton"
+    aria-label="화면 설정"
+    aria-expanded="false">
+
+    ⚙️
+
+</button>
+
+
+<div
+    class="settings-menu"
+    id="settingsMenu">
+
+
     <button
         type="button"
-        class="settings-button"
-        id="settingsButton"
-        aria-label="화면 설정"
+        class="theme-option"
+        id="lightThemeButton">
+
+        ☀️ 밝게
+
+    </button>
+
+
+    <button
+        type="button"
+        class="theme-option"
+        id="darkThemeButton">
+
+        🌙 어둡게
+
+    </button>
+
+
+    <button
+        type="button"
+        class="font-size-option"
+        id="fontSizeButton"
         aria-expanded="false">
 
-        ⚙️
+        🔠 글자 크기
 
     </button>
 
 
     <div
-        class="settings-menu"
-        id="settingsMenu">
+        class="font-size-panel"
+        id="fontSizePanel">
 
+        <div class="font-size-labels">
 
-        <!-- 밝게 -->
+            <span>작게</span>
 
-        <button
-            type="button"
-            class="theme-option"
-            id="lightThemeButton">
+            <span id="fontSizeValue">
+                100%
+            </span>
 
-            ☀️ 밝게
-
-        </button>
-
-
-        <!-- 어둡게 -->
-
-        <button
-            type="button"
-            class="theme-option"
-            id="darkThemeButton">
-
-            🌙 어둡게
-
-        </button>
-
-
-        <!-- 글자 크기 -->
-
-        <button
-            type="button"
-            class="font-size-option"
-            id="fontSizeButton"
-            aria-expanded="false">
-
-            🔠 글자 크기
-
-        </button>
-
-
-        <!-- 글자 크기 슬라이더 -->
-
-        <div
-            class="font-size-panel"
-            id="fontSizePanel">
-
-            <div class="font-size-labels">
-
-                <span>작게</span>
-
-                <span id="fontSizeValue">
-                    100%
-                </span>
-
-                <span>크게</span>
-
-            </div>
-
-
-            <input
-                type="range"
-                class="font-size-range"
-                id="fontSizeRange"
-                min="0.85"
-                max="1.35"
-                step="0.05"
-                value="1"
-                aria-label="글자 크기 조절">
+            <span>크게</span>
 
         </div>
 
 
+        <input
+            type="range"
+            class="font-size-range"
+            id="fontSizeRange"
+            min="0.80"
+            max="1.50"
+            step="0.05"
+            value="1"
+            aria-label="글자 크기 조절">
+
     </div>
+
+
+</div>
+```
 
 </div>
 
-
-
-<!-- ==================================================
-     메인
-================================================== -->
+<!-- 메인 -->
 
 <main class="page">
 
 <div class="container">
 
-
 <header class="header">
 
-    <h1 class="title">
-        SKKU 조경
-    </h1>
+```
+<h1 class="title">
+    SKKU 조경
+</h1>
+```
 
 </header>
 
-
-
-<!-- ==================================================
-     Google Sheets 메뉴
-================================================== -->
-
 <section class="buttons">
-
 
 <!-- 작업 일지 -->
 
 <a
-    class="button"
-    href="https://docs.google.com/spreadsheets/d/1QQc6U-C3LSp8iZTQ85Uzdh3i-Xvjrqgkn-tlllAQFdY/edit?gid=780802741#gid=780802741"
-    target="_top">
+ class="button"
+ href="https://docs.google.com/spreadsheets/d/1QQc6U-C3LSp8iZTQ85Uzdh3i-Xvjrqgkn-tlllAQFdY/edit?gid=780802741#gid=780802741"
+ target="_top">
 
-    <div class="button-left">
+```
+<div class="button-left">
 
-        <div class="icon">
-            📝
-        </div>
-
-        <span class="button-text">
-            작업 일지
-        </span>
-
+    <div class="icon">
+        📝
     </div>
 
-    <span class="button-arrow">
-        ›
+    <span class="button-text">
+        작업 일지
     </span>
 
+</div>
+
+<span class="button-arrow">
+    ›
+</span>
+```
+
 </a>
-
-
 
 <!-- 물품 구매 -->
 
 <a
-    class="button"
-    href="https://docs.google.com/spreadsheets/d/1RKlm49nXuZ3W2zG0VngRQjdMEtggl4tBuVjWSOC3rxI/edit?gid=224685163#gid=224685163"
-    target="_top">
+ class="button"
+ href="https://docs.google.com/spreadsheets/d/1RKlm49nXuZ3W2zG0VngRQjdMEtggl4tBuVjWSOC3rxI/edit?gid=224685163#gid=224685163"
+ target="_top">
 
-    <div class="button-left">
+```
+<div class="button-left">
 
-        <div class="icon">
-            🛒
-        </div>
-
-        <span class="button-text">
-            물품 구매
-        </span>
-
+    <div class="icon">
+        🛒
     </div>
 
-    <span class="button-arrow">
-        ›
+    <span class="button-text">
+        물품 구매
     </span>
 
-</a>
+</div>
 
+<span class="button-arrow">
+    ›
+</span>
+```
+
+</a>
 
 </section>
 
@@ -760,13 +676,9 @@ body.dark-theme .font-size-range {
 
 </main>
 
-
-
 <script>
 
-/* ==================================================
-   설정
-================================================== */
+/* 설정 */
 
 const THEME_KEY =
     "skku_jogyeong_theme";
@@ -821,9 +733,7 @@ const fontSizeValue =
     );
 
 
-/* ==================================================
-   테마 적용
-================================================== */
+/* 테마 적용 */
 
 function applyTheme(theme) {
 
@@ -874,9 +784,7 @@ function applyTheme(theme) {
 }
 
 
-/* ==================================================
-   글자 크기 적용
-================================================== */
+/* 글자 크기 적용 */
 
 function applyFontSize(
     value,
@@ -886,15 +794,17 @@ function applyFontSize(
     let size =
         Number(value);
 
+
     if (!Number.isFinite(size)) {
         size = 1;
     }
 
+
     size =
         Math.min(
-            1.35,
+            1.50,
             Math.max(
-                0.85,
+                0.80,
                 size
             )
         );
@@ -911,8 +821,9 @@ function applyFontSize(
 
 
     fontSizeValue.textContent =
-        Math.round(size * 100)
-        + "%";
+        Math.round(
+            size * 100
+        ) + "%";
 
 
     if (save) {
@@ -930,9 +841,7 @@ function applyFontSize(
 }
 
 
-/* ==================================================
-   저장된 설정 불러오기
-================================================== */
+/* 저장된 설정 불러오기 */
 
 function loadSettings() {
 
@@ -956,7 +865,10 @@ function loadSettings() {
                 FONT_SIZE_KEY
             );
 
-        if (savedSize !== null) {
+
+        if (
+            savedSize !== null
+        ) {
 
             fontSize =
                 Number(savedSize);
@@ -989,9 +901,7 @@ function loadSettings() {
 }
 
 
-/* ==================================================
-   ⚙️ 설정 버튼
-================================================== */
+/* ⚙️ 설정 */
 
 settingsButton.addEventListener(
     "click",
@@ -1017,9 +927,7 @@ settingsButton.addEventListener(
 );
 
 
-/* ==================================================
-   ☀️ 밝게
-================================================== */
+/* ☀️ 밝게 */
 
 lightThemeButton.addEventListener(
     "click",
@@ -1033,9 +941,7 @@ lightThemeButton.addEventListener(
 );
 
 
-/* ==================================================
-   🌙 어둡게
-================================================== */
+/* 🌙 어둡게 */
 
 darkThemeButton.addEventListener(
     "click",
@@ -1049,9 +955,7 @@ darkThemeButton.addEventListener(
 );
 
 
-/* ==================================================
-   🔠 글자 크기
-================================================== */
+/* 🔠 글자 크기 */
 
 fontSizeButton.addEventListener(
     "click",
@@ -1077,9 +981,7 @@ fontSizeButton.addEventListener(
 );
 
 
-/* ==================================================
-   글자 크기 슬라이더
-================================================== */
+/* 글자 크기 슬라이더 */
 
 fontSizeRange.addEventListener(
     "input",
@@ -1093,9 +995,7 @@ fontSizeRange.addEventListener(
 );
 
 
-/* ==================================================
-   화면 다른 곳을 누르면 닫기
-================================================== */
+/* 화면 다른 곳을 누르면 닫기 */
 
 document.addEventListener(
     "click",
@@ -1131,9 +1031,7 @@ document.addEventListener(
 );
 
 
-/* ==================================================
-   처음 실행
-================================================== */
+/* 처음 실행 */
 
 loadSettings();
 
@@ -1141,4 +1039,3 @@ loadSettings();
 
 </body>
 </html>
-```
