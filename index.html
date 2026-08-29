@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="ko">
@@ -50,7 +51,7 @@ body {
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
-    padding-top: max(28px, env(safe-area-inset-top));
+    padding-top: max(40px, env(safe-area-inset-top));
     padding-right: max(16px, env(safe-area-inset-right));
     padding-bottom: max(32px, env(safe-area-inset-bottom));
     padding-left: max(16px, env(safe-area-inset-left));
@@ -64,12 +65,12 @@ body {
 
 .header {
     position: relative;
-    padding: 8px 4px 22px;
+    padding: 15px 4px 34px;
 }
 
 .title {
     margin: 0;
-    font-size: calc(25px * var(--font-scale, 1));
+    font-size: calc(35px * var(--font-scale, 1));
     font-weight: 800;
     letter-spacing: -1.3px;
     line-height: 1.15;
@@ -129,7 +130,7 @@ body {
 }
 
 .button-text {
-    font-size: calc(19px * var(--font-scale, 1));
+    font-size: calc(25px * var(--font-scale, 1));
     font-weight: 750;
     letter-spacing: -0.5px;
     white-space: nowrap;
@@ -367,17 +368,17 @@ body.light-theme .font-size-current {
 @media (max-width: 430px) {
 
     .page {
-        padding-top: max(20px, env(safe-area-inset-top));
+        padding-top: max(40px, env(safe-area-inset-top));
         padding-left: max(13px, env(safe-area-inset-left));
         padding-right: max(13px, env(safe-area-inset-right));
     }
 
     .header {
-        padding-bottom: 17px;
+        padding-bottom: 34px;
     }
 
     .title {
-        font-size: calc(22px * var(--font-scale, 1));
+        font-size: calc(35px * var(--font-scale, 1));
     }
 
     .settings-button {
@@ -413,7 +414,7 @@ body.light-theme .font-size-current {
     }
 
     .button-text {
-        font-size: calc(17px * var(--font-scale, 1));
+        font-size: calc(25px * var(--font-scale, 1));
     }
 
     .button-arrow {
@@ -424,7 +425,7 @@ body.light-theme .font-size-current {
 @media (max-width: 360px) {
 
     .title {
-        font-size: calc(20px * var(--font-scale, 1));
+        font-size: calc(35px * var(--font-scale, 1));
     }
 
     .button {
@@ -432,7 +433,7 @@ body.light-theme .font-size-current {
     }
 
     .button-text {
-        font-size: calc(15px * var(--font-scale, 1));
+        font-size: calc(25px * var(--font-scale, 1));
     }
 
     .icon {
@@ -910,3 +911,4 @@ loadSettings();
 
 </body>
 </html>
+```
