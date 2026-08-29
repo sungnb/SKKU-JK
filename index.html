@@ -238,35 +238,58 @@ body {
     font-size: 18px;
     font-weight: 800;
 }
+    .font-size-panel {
+        display: none;
+        padding: 6px 9px 9px;
+    }
 
-.font-size-panel {
-    display: none;
-    padding: 5px 11px 10px;
-}
+    .font-size-panel.show {
+        display: block;
+    }
 
-.font-size-panel.show {
-    display: block;
-}
+    .font-size-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 7px;
+        width: 100%;
+    }
 
-.font-size-labels {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 3px;
-    color: #6b7c8f;
-    font-size: 11px;
-    font-weight: 600;
-}
+    .font-size-adjust {
+        flex: 0 0 38px;
+        width: 38px;
+        height: 34px;
+        border: 0;
+        border-radius: 9px;
+        background: #eef3f8;
+        color: #52657a;
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        cursor: pointer;
+        -webkit-user-select: none;
+        user-select: none;
+    }
 
-.font-size-range {
-    display: block;
-    width: 100%;
-    height: 24px;
-    margin: 0;
-    padding: 0;
-    cursor: pointer;
-    accent-color: #52657a;
-}
+    .font-size-adjust:active {
+        transform: scale(.92);
+        background: #dfe8f1;
+    }
+
+    .font-size-current {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+        color: #172033;
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 34px;
+        white-space: nowrap;
+    }
 
 body.dark-theme,
 html.dark-theme {
@@ -445,33 +468,31 @@ body.dark-theme .font-size-range {
         <span>글자 크기</span>
 
     </button>
-
     <div
         class="font-size-panel"
         id="fontSizePanel">
 
-        <div class="font-size-labels">
+        <div class="font-size-controls">
 
-            <span>80%</span>
+            <button
+                type="button"
+                class="font-size-adjust"
+                id="fontSizeDecrease"
+                aria-label="글자 크기 5% 감소">◀</button>
 
-            <span id="fontSizeValue">100%</span>
+            <span
+                class="font-size-current"
+                id="fontSizeValue">100%</span>
 
-            <span>150%</span>
+            <button
+                type="button"
+                class="font-size-adjust"
+                id="fontSizeIncrease"
+                aria-label="글자 크기 5% 증가">▶</button>
 
         </div>
 
-        <input
-            type="range"
-            class="font-size-range"
-            id="fontSizeRange"
-            min="0.80"
-            max="1.50"
-            step="0.05"
-            value="1"
-            aria-label="글자 크기 조절">
-
     </div>
-
 </div>
 
 </div>
@@ -568,8 +589,11 @@ const fontSizeButton =
 const fontSizePanel =
     document.getElementById("fontSizePanel");
 
-const fontSizeRange =
-    document.getElementById("fontSizeRange");
+const fontSizeDecrease =
+    document.getElementById("fontSizeDecrease");
+
+const fontSizeIncrease =
+    document.getElementById("fontSizeIncrease");
 
 const fontSizeValue =
     document.getElementById("fontSizeValue");
@@ -634,11 +658,7 @@ function applyFontSize(value, save = true) {
         "--font-scale",
         size
     );
-
-    fontSizeRange.value =
-        String(size);
-
-    fontSizeValue.textContent =
+fontSizeValue.textContent =
         Math.round(size * 100) + "%";
 
     if (save) {
@@ -754,13 +774,40 @@ fontSizeButton.addEventListener(
 
     }
 );
+fontSizeDecrease.addEventListener(
+    "click",
+    function(event) {
 
+        event.stopPropagation();
 
-fontSizeRange.addEventListener(
-    "input",
-    function() {
+        const current =
+            Number(
+                getComputedStyle(document.documentElement)
+                    .getPropertyValue("--font-scale")
+            ) || 1;
 
-        applyFontSize(this.value);
+        applyFontSize(
+            Math.round((current - 0.05) * 100) / 100
+        );
+
+    }
+);
+
+fontSizeIncrease.addEventListener(
+    "click",
+    function(event) {
+
+        event.stopPropagation();
+
+        const current =
+            Number(
+                getComputedStyle(document.documentElement)
+                    .getPropertyValue("--font-scale")
+            ) || 1;
+
+        applyFontSize(
+            Math.round((current + 0.05) * 100) / 100
+        );
 
     }
 );
