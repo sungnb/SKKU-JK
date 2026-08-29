@@ -238,59 +238,63 @@ body {
     font-size: 18px;
     font-weight: 800;
 }
-    .font-size-panel {
-        display: none;
-        padding: 6px 9px 9px;
-    }
 
-    .font-size-panel.show {
-        display: block;
-    }
+/* 글자 크기 조절 영역 */
+.font-size-panel {
+    display: none;
+    padding: 6px 9px 9px;
+}
 
-    .font-size-controls {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 7px;
-        width: 100%;
-    }
+.font-size-panel.show {
+    display: block;
+}
 
-    .font-size-adjust {
-        flex: 0 0 38px;
-        width: 38px;
-        height: 34px;
-        border: 0;
-        border-radius: 9px;
-        background: #eef3f8;
-        color: #52657a;
-        font-size: 22px;
-        font-weight: 800;
-        line-height: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-        cursor: pointer;
-        -webkit-user-select: none;
-        user-select: none;
-    }
+.font-size-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 7px;
+    width: 100%;
+}
 
-    .font-size-adjust:active {
-        transform: scale(.92);
-        background: #dfe8f1;
-    }
+.font-size-adjust {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 34px;
+    border: 0;
+    border-radius: 9px;
+    background: #eef3f8;
+    color: #52657a;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+}
 
-    .font-size-current {
-        flex: 1;
-        min-width: 0;
-        text-align: center;
-        color: #172033;
-        font-size: 14px;
-        font-weight: 800;
-        line-height: 34px;
-        white-space: nowrap;
-    }
+.font-size-adjust:active {
+    transform: scale(.92);
+    background: #dfe8f1;
+}
 
+/* 현재 글자 크기 */
+.font-size-current {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    color: #172033;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 34px;
+    white-space: nowrap;
+}
+
+/* 어두운 배경 */
 body.dark-theme,
 html.dark-theme {
     background: #18212b;
@@ -345,12 +349,19 @@ body.dark-theme .font-size-icon {
     color: #f0f3f6;
 }
 
-body.dark-theme .font-size-labels {
-    color: #aebdcc;
+body.dark-theme .font-size-adjust {
+    background: #334150;
+    color: #f0f3f6;
 }
 
-body.dark-theme .font-size-range {
-    accent-color: #d7e1eb;
+/* 어두운 배경에서는 현재 크기를 흰색 */
+body.dark-theme .font-size-current {
+    color: #ffffff !important;
+}
+
+/* 밝은 배경에서는 현재 크기를 검정색 */
+body.light-theme .font-size-current {
+    color: #172033 !important;
 }
 
 @media (max-width: 430px) {
@@ -431,11 +442,6 @@ body.dark-theme .font-size-range {
     }
 }
 
-
-    body.dark-theme .font-size-current {
-        color: #ffffff !important;
-    }
-
 </style>
 
 </head>
@@ -473,6 +479,7 @@ body.dark-theme .font-size-range {
         <span>글자 크기</span>
 
     </button>
+
     <div
         class="font-size-panel"
         id="fontSizePanel">
@@ -498,6 +505,7 @@ body.dark-theme .font-size-range {
         </div>
 
     </div>
+
 </div>
 
 </div>
@@ -619,6 +627,16 @@ function applyTheme(theme) {
         isDark
     );
 
+    document.body.classList.toggle(
+        "light-theme",
+        !isDark
+    );
+
+    document.documentElement.classList.toggle(
+        "light-theme",
+        !isDark
+    );
+
     try {
 
         localStorage.setItem(
@@ -663,7 +681,8 @@ function applyFontSize(value, save = true) {
         "--font-scale",
         size
     );
-fontSizeValue.textContent =
+
+    fontSizeValue.textContent =
         Math.round(size * 100) + "%";
 
     if (save) {
@@ -716,6 +735,16 @@ function loadSettings() {
     document.documentElement.classList.toggle(
         "dark-theme",
         theme === "dark"
+    );
+
+    document.body.classList.toggle(
+        "light-theme",
+        theme === "light"
+    );
+
+    document.documentElement.classList.toggle(
+        "light-theme",
+        theme === "light"
     );
 
     applyFontSize(
@@ -779,6 +808,9 @@ fontSizeButton.addEventListener(
 
     }
 );
+
+
+/* 글자 크기 5% 감소 */
 fontSizeDecrease.addEventListener(
     "click",
     function(event) {
@@ -787,17 +819,28 @@ fontSizeDecrease.addEventListener(
 
         const current =
             Number(
-                getComputedStyle(document.documentElement)
-                    .getPropertyValue("--font-scale")
+                getComputedStyle(
+                    document.documentElement
+                ).getPropertyValue(
+                    "--font-scale"
+                )
             ) || 1;
 
-        applyFontSize(
-            Math.round((current - 0.05) * 100) / 100
-        );
+        const next =
+            Math.max(
+                0.80,
+                Math.round(
+                    (current - 0.05) * 100
+                ) / 100
+            );
+
+        applyFontSize(next);
 
     }
 );
 
+
+/* 글자 크기 5% 증가 */
 fontSizeIncrease.addEventListener(
     "click",
     function(event) {
@@ -806,13 +849,22 @@ fontSizeIncrease.addEventListener(
 
         const current =
             Number(
-                getComputedStyle(document.documentElement)
-                    .getPropertyValue("--font-scale")
+                getComputedStyle(
+                    document.documentElement
+                ).getPropertyValue(
+                    "--font-scale"
+                )
             ) || 1;
 
-        applyFontSize(
-            Math.round((current + 0.05) * 100) / 100
-        );
+        const next =
+            Math.min(
+                1.50,
+                Math.round(
+                    (current + 0.05) * 100
+                ) / 100
+            );
+
+        applyFontSize(next);
 
     }
 );
